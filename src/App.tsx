@@ -117,7 +117,7 @@ function App() {
       )}
       <footer>
         <a href="https://the-trivia-api.com">The Trivia API</a>
-        <a href="https://the-trivia-api.com">Github Repo</a>
+        <a href="https://github.com/the-trivia-api/react-starter">Github Repo</a>
       </footer>
     </div>
   );
