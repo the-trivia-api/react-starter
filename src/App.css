@@ -1,38 +1,83 @@
+body {
+  color: rgba(0, 0, 0, 0.8);
+  background-color: #fef9f2;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #aed9e0;
+  padding: 1rem;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.score-table {
+  margin: auto;
+}
+
+.answer-question {
+  margin: 4rem 0;
+}
+
+.answer-question__question {
+  font-size: 1.5rem;
+}
+
+.answer-question__answers {
+  display: inline-grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  list-style: none;
+  width: 90vw;
+  padding-left: 0;
+}
+
+/* So that on small screens the buttons aren't too small */
+@media only screen and (max-width: 600px) {
+  .answer-question__answers {
+    grid-template-columns: 1fr;
+  }
+}
+
+.answer-question__answers button {
+  background-color: none;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.answer-question__answers > :nth-child(1) button {
+  background-color: #ffa69e;
+}
+
+.answer-question__answers > :nth-child(2) button {
+  background-color: #faf3dd;
+}
+
+.answer-question__answers > :nth-child(3) button {
+  background-color: #b8f2e6;
+}
+
+.answer-question__answers > :nth-child(4) button {
+  background-color: #aed9e0;
+}
+
+.question-json {
+  text-align: left;
+  width: min-content;
+  margin: auto;
+}
+
+footer {
+  background-color: #aed9e0;
+  position: fixed;
+  bottom: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  justify-content: space-evenly;
+  width: 100vw;
+  padding: 0.5rem 0;
 }
