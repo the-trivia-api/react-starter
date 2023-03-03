@@ -74,6 +74,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">Trivia API React Starter</header>
+      <p className="intro-paragraph">
+        This site shows how to use
+        {' '}<a href="https://the-trivia-api.com">The Trivia API</a> to build a basic
+        quiz web app using <a href="https://reactjs.org/">React</a>. The code is
+        public and can be seen on{' '}
+        <a href="https://github.com/the-trivia-api/react-starter">its Github repo</a
+        >.
+      </p>
       {currentQuestion && (
         <>
           <table className="score-table">

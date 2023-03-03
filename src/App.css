@@ -14,6 +14,13 @@ body {
   margin-bottom: 2rem;
 }
 
+.intro-paragraph {
+  max-width: 70ch;
+  margin: auto;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
 .score-table {
   margin: auto;
 }
