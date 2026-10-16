@@ -1,13 +1,381 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+/* Change these to restyle the whole app */
+:root {
+  --color-background: #0a0a0b;
+  --color-surface: #111113;
+  --color-surface-hover: #18181b;
+  --color-border: #27272a;
+  --color-text: #fafafa;
+  --color-text-secondary: #a1a1aa;
+  --color-text-muted: #71717a;
+  --color-accent: #f59e0b;
+  --color-accent-hover: #fbbf24;
+  --color-correct: #22c55e;
+  --color-incorrect: #ef4444;
+  --radius: 12px;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  color-scheme: dark;
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-background);
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+/* Layout */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 40rem;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 48px 16px;
+}
+
+main {
+  flex: 1;
+}
+
+.header__title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.header__subtitle {
+  margin-top: 4px;
+  color: var(--color-text-secondary);
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* Cards */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 32px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: calc(var(--radius) * 1.5);
+}
+
+.card--status {
+  align-items: center;
+  text-align: center;
+  padding-block: 64px;
+}
+
+.card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.card__text {
+  color: var(--color-text-secondary);
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 24px 20px;
+  }
+}
+
+/* Links, buttons and form controls */
+
+.link {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.button,
+.select,
+.answer {
+  font: inherit;
+  color: inherit;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  transition:
+    background-color 150ms,
+    border-color 150ms;
+}
+
+.button {
+  padding: 10px 20px;
+  font-weight: 600;
+  background: transparent;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--color-surface-hover);
+}
+
+.button--primary {
+  color: var(--color-background);
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.button--primary:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field__label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+.select {
+  padding: 10px 12px;
+  background: var(--color-background);
+}
+
+/* One focus style for everything, visible on the dark background */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Headings get focus moved to them, but aren't interactive, so no outline */
+h2[tabindex="-1"]:focus {
+  outline: none;
+}
+
+/* Questions */
+
+.quiz-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.progress {
+  height: 4px;
+  margin-top: -12px;
+  overflow: hidden;
+  background: var(--color-border);
+  border-radius: 999px;
+}
+
+.progress__bar {
+  height: 100%;
+  background: var(--color-accent);
+  transition: width 300ms ease;
+}
+
+.question__category {
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+  text-transform: capitalize;
+}
+
+.question__text {
+  margin-top: -12px;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.answers {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.answer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  text-align: left;
+  background: var(--color-background);
+  cursor: pointer;
+}
+
+.answer:hover:not([aria-disabled="true"]) {
+  background: var(--color-surface-hover);
+  border-color: var(--color-text-muted);
+}
+
+.answer[aria-disabled="true"] {
+  cursor: default;
+}
+
+.answer--correct {
+  border-color: var(--color-correct);
+  background: color-mix(in srgb, var(--color-correct) 12%, transparent);
+}
+
+.answer--incorrect {
+  border-color: var(--color-incorrect);
+  background: color-mix(in srgb, var(--color-incorrect) 12%, transparent);
+}
+
+.answer__tag {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.answer--correct .answer__tag {
+  color: var(--color-correct);
+}
+
+.answer--incorrect .answer__tag {
+  color: var(--color-incorrect);
+}
+
+.question__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 46px;
+}
+
+.feedback {
+  color: var(--color-text-secondary);
+}
+
+/* Results */
+
+.review__title {
+  margin-top: 12px;
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.review {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.review__item {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.review__question {
+  font-weight: 500;
+}
+
+.review__answer {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.review__answer--correct {
+  color: var(--color-correct);
+}
+
+.review__answer--incorrect {
+  color: var(--color-incorrect);
+}
+
+/* Loading spinner */
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-accent);
+  border-radius: 50%;
+  animation: spin 800ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Utilities */
+
+.is-invisible {
+  visibility: hidden;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .spinner {
+    animation: none;
+  }
 }
