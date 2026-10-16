@@ -4,7 +4,7 @@ A quiz app built with React and [The Trivia API](https://the-trivia-api.com). Pi
 
 **[Try the live demo](https://react-starter.the-trivia-api.com)**
 
-Do whatever you like with it: fork it, copy bits out of it, or use it as the starting point for your own quiz.
+Do whatever you like with it: fork it, copy bits out of it, or use it as the starting point for your own quiz. It's [MIT licensed](LICENSE).
 
 ## Running it
 
