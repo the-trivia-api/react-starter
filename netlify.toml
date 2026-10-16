@@ -1,0 +1,8 @@
+# Overrides the build settings in the Netlify dashboard, which were set up for
+# the old Create React App version of this project.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
